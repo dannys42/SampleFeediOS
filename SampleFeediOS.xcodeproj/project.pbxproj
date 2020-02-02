@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1471180123E6950D00FD3895 /* SampleUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 1471180023E6950D00FD3895 /* SampleUtilities */; };
 		149181D623E6561F0037146E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149181D523E6561F0037146E /* AppDelegate.swift */; };
 		149181D923E6561F0037146E /* SampleFeediOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 149181D723E6561F0037146E /* SampleFeediOS.xcdatamodeld */; };
 		149181DB23E6561F0037146E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149181DA23E6561F0037146E /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		147117FE23E6946500FD3895 /* SampleUtilities */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleUtilities; sourceTree = "<group>"; };
 		149181D223E6561F0037146E /* SampleFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		149181D523E6561F0037146E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		149181D823E6561F0037146E /* SampleFeediOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SampleFeediOS.xcdatamodel; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1471180123E6950D00FD3895 /* SampleUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +87,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		147117FF23E6950D00FD3895 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		149181C923E6561F0037146E = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +101,8 @@
 				149181F023E656230037146E /* SampleFeediOSTests */,
 				149181FB23E656230037146E /* SampleFeediOSUITests */,
 				149181D323E6561F0037146E /* Products */,
+				147117FE23E6946500FD3895 /* SampleUtilities */,
+				147117FF23E6950D00FD3895 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +176,9 @@
 			dependencies = (
 			);
 			name = SampleFeediOS;
+			packageProductDependencies = (
+				1471180023E6950D00FD3895 /* SampleUtilities */,
+			);
 			productName = SampleFeediOS;
 			productReference = 149181D223E6561F0037146E /* SampleFeed.app */;
 			productType = "com.apple.product-type.application";
@@ -614,6 +629,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1471180023E6950D00FD3895 /* SampleUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SampleUtilities;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		149181D723E6561F0037146E /* SampleFeediOS.xcdatamodeld */ = {

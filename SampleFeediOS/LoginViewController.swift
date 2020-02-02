@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var keyboardToolbar: UIToolbar!
-    
+
     public var didLogin: ()->Void = { }
     
     override func viewDidLoad() {
