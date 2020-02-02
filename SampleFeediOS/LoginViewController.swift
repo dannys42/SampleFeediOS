@@ -35,9 +35,21 @@ class LoginViewController: UIViewController {
     
     // MARK: - Convenience Functions
     fileprivate func login() {
-        
-//        self.performSegue(withIdentifier: "loginSegue", sender: self)
-        self.didLogin()
+        guard let username = self.usernameTextField.text,
+            let password = self.passwordTextField.text else {
+                // Do nothing if attmept to login with no username/password
+                return
+        }
+        FeedServer.shared.login(username: username, password: password) { error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.present(error: error)
+                }
+                return
+            }
+            
+            self.didLogin()
+        }
     }
 }
 
