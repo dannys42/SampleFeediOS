@@ -18,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let window = window else { return }
+                
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         guard let splitViewController = window.rootViewController as? UISplitViewController else { return }
         guard let navigationController = splitViewController.viewControllers.last as? UINavigationController else { return }
         navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
@@ -26,7 +29,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
 
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
-        controller.managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        controller.managedObjectContext = (UIApplication.shared.delegate as?
+            AppDelegate)?.persistentContainer.viewContext        
+        
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        window.rootViewController = loginViewController
+        loginViewController.didLogin = {
+            UIView.transition(from: loginViewController.view,
+                              to: splitViewController.view,
+                              duration: 1.0,
+                              options: .curveEaseInOut) { (_) in
+                                window.rootViewController = splitViewController
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

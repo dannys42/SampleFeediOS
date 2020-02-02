@@ -32,6 +32,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isBeingDismissed {
+            self._fetchedResultsController = nil
+        }
+    }
 
     @objc
     func insertNewObject(_ sender: Any) {
