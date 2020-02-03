@@ -18,9 +18,10 @@
 		149181F223E656230037146E /* SampleFeediOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149181F123E656230037146E /* SampleFeediOSTests.swift */; };
 		149181FD23E656230037146E /* SampleFeediOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149181FC23E656230037146E /* SampleFeediOSUITests.swift */; };
 		1491820B23E659330037146E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491820A23E659330037146E /* LoginViewController.swift */; };
-		1491820E23E68AC30037146E /* FeedServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491820D23E68AC30037146E /* FeedServer.swift */; };
+		1491820E23E68AC30037146E /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1491820D23E68AC30037146E /* FeedController.swift */; };
 		14DA048523E6B40600786A79 /* SampleFeedUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 14DA048423E6B40600786A79 /* SampleFeedUtilities */; };
 		14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */; };
+		14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048923E7499800786A79 /* FeedWallListOp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +59,9 @@
 		149181FC23E656230037146E /* SampleFeediOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleFeediOSUITests.swift; sourceTree = "<group>"; };
 		149181FE23E656230037146E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1491820A23E659330037146E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1491820D23E68AC30037146E /* FeedServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedServer.swift; sourceTree = "<group>"; };
+		1491820D23E68AC30037146E /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Errors.swift"; sourceTree = "<group>"; };
+		14DA048923E7499800786A79 /* FeedWallListOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWallListOp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +158,8 @@
 		1491820C23E68A8D0037146E /* FeedServer */ = {
 			isa = PBXGroup;
 			children = (
-				1491820D23E68AC30037146E /* FeedServer.swift */,
+				1491820D23E68AC30037146E /* FeedController.swift */,
+				14DA048923E7499800786A79 /* FeedWallListOp.swift */,
 			);
 			path = FeedServer;
 			sourceTree = "<group>";
@@ -306,10 +309,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1491820E23E68AC30037146E /* FeedServer.swift in Sources */,
+				1491820E23E68AC30037146E /* FeedController.swift in Sources */,
 				1491820B23E659330037146E /* LoginViewController.swift in Sources */,
 				149181DD23E6561F0037146E /* MasterViewController.swift in Sources */,
 				149181D623E6561F0037146E /* AppDelegate.swift in Sources */,
+				14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */,
 				149181DF23E6561F0037146E /* DetailViewController.swift in Sources */,
 				149181D923E6561F0037146E /* SampleFeediOS.xcdatamodeld in Sources */,
 				149181DB23E6561F0037146E /* SceneDelegate.swift in Sources */,

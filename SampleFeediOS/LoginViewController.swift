@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.usernameTextField.inputAccessoryView = self.keyboardToolbar
         self.passwordTextField.inputAccessoryView = self.keyboardToolbar
+        
+        self.loadDefaults()
     }
     
     @IBAction func loginDidPress(_ sender: UIButton) {
@@ -40,7 +42,11 @@ class LoginViewController: UIViewController {
                 // Do nothing if attmept to login with no username/password
                 return
         }
-        FeedServer.shared.login(username: username, password: password) { error in
+        FeedController.shared.login(username: username, password: password) { error in
+            
+            DispatchQueue.main.async {
+                self.saveDefaults()
+            }
             if let error = error {
                 DispatchQueue.main.async {
                     self.present(error: error)
@@ -49,6 +55,32 @@ class LoginViewController: UIViewController {
             }
             
             self.didLogin()
+        }
+    }
+    
+    // FIXME: Convenience during development.  Remove these in production.
+    enum DefaultsKey: String {
+        case username
+        case password
+    }
+    fileprivate func loadDefaults() {
+        let store = UserDefaults.standard
+        
+        self.usernameTextField.text = store.string(forKey: DefaultsKey.username.rawValue)
+        self.passwordTextField.text = store.string(forKey: DefaultsKey.password.rawValue)
+    }
+    fileprivate func saveDefaults() {
+        let store = UserDefaults.standard
+
+        if let text = self.usernameTextField.text {
+            store.set(text, forKey: DefaultsKey.username.rawValue)
+        } else {
+            store.removeObject(forKey: DefaultsKey.username.rawValue)
+        }
+        if let text = self.passwordTextField.text {
+            store.set(text, forKey: DefaultsKey.password.rawValue)
+        } else {
+            store.removeObject(forKey: DefaultsKey.password.rawValue)
         }
     }
 }

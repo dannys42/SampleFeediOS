@@ -29,8 +29,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
 
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
-        controller.managedObjectContext = (UIApplication.shared.delegate as?
-            AppDelegate)?.persistentContainer.viewContext        
+        
+        let viewContext = (UIApplication.shared.delegate as?
+        AppDelegate)?.persistentContainer.viewContext
+        controller.managedObjectContext = viewContext
+        
+        // Make sure feed controller has the same parent
+        FeedController.shared.parentManagedObjectContext = viewContext
         
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         window.rootViewController = loginViewController
