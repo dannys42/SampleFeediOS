@@ -13,12 +13,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    public var didLogout: ()->Void = {  }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
-
+        
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonPressed(_:)))
+        navigationItem.leftBarButtonItem = logoutButton
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
@@ -44,32 +48,39 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     @objc
     func insertNewObject(_ sender: Any) {
-        FeedController.shared.createWall(topic: "Test", isPublic: true) { response in
-            switch response {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.present(error: error)
+        // Present an alert asking the user for the topic
+        
+        let inputVC = UIAlertController(title: "Create new wall",
+                                        message: "Enter a topic for the wall", preferredStyle: .alert)
+        inputVC.addTextField { (textField) in
+            textField.placeholder = "Enter topic"
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let createAction = UIAlertAction(title: "Create", style: .default) { (action) in
+            let textField = inputVC.textFields![0] as UITextField
+            let topic = textField.text ?? ""
+            
+            FeedController.shared.createWall(topic: topic, isPublic: true) { response in
+                switch response {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self.present(error: error)
+                    }
+                default:
+                    break // do nothing
                 }
-            default:
-                break // do nothing
             }
         }
         
-        let context = self.fetchedResultsController.managedObjectContext
-        let newEvent = Event(context: context)
-             
-        // If appropriate, configure the new managed object.
-        newEvent.timestamp = Date()
-
-        // Save the context.
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-        }
+        inputVC.addAction(cancelAction)
+        inputVC.addAction(createAction)
+        self.present(inputVC, animated: true)
+    }
+    
+    @objc
+    func logoutButtonPressed(_ sender: Any) {
+        FeedController.shared.logout()
+        self.didLogout()
     }
 
     // MARK: - Segues
@@ -96,13 +107,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = fetchedResultsController.sections![section]
         
-        print(" section: \(section)  numRows: \(sectionInfo.numberOfObjects)")
-
         return sectionInfo.numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WallCell", for: indexPath)
         let wall = fetchedResultsController.object(at: indexPath)
         configureCell(cell, withWall: wall)
         return cell
@@ -110,7 +119,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false // TODO: add delete function
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

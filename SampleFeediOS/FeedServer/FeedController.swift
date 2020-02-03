@@ -55,6 +55,10 @@ public class FeedController {
         })
     }
     
+    func logout() {
+        try? httpClient.logout()
+    }
+    
     /// Synchronize walls from the server to the local store.
     /// This will do nothing if an identical existing request is already running
     func updateWalls() {

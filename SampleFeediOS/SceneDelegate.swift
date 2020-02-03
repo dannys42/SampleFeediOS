@@ -28,43 +28,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         splitViewController.delegate = self
 
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
-        let controller = masterNavigationController.topViewController as! MasterViewController
+        let masterViewController = masterNavigationController.topViewController as! MasterViewController
         
         let viewContext = (UIApplication.shared.delegate as?
         AppDelegate)?.persistentContainer.viewContext
-        controller.managedObjectContext = viewContext
+        masterViewController.managedObjectContext = viewContext
         
         // Make sure feed controller has the same parent
         FeedController.shared.parentManagedObjectContext = viewContext
         
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         window.rootViewController = loginViewController
+        
         loginViewController.didLogin = {
             DispatchQueue.main.async {
-                let fadeDuration: TimeInterval = 0.125
-                // Fade between view controllers
-                // Need to split up the fade because we cannot use UIView.transition(from:to:...) for the root window
-                
-                loginViewController.view.alpha = 1.0
-                UIView.transition(with: loginViewController.view,
-                                  duration: fadeDuration,
-                                  options: .curveEaseOut,
-                                  animations: {
-                                    loginViewController.view.alpha = 0.0
-                }, completion: { _ in
-                    splitViewController.view.alpha = 0.0
-                    window.rootViewController = splitViewController
-
-                    UIView.transition(with: splitViewController.view,
-                                      duration: fadeDuration,
-                                      options: .curveEaseIn, animations: {
-                                        splitViewController.view.alpha = 1.0
-                    })
-                })
+                window.transitionRootViewController(to: splitViewController)
+            }
+        }
+        masterViewController.didLogout = {
+            DispatchQueue.main.async {
+                window.transitionRootViewController(to: loginViewController)
             }
         }
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -110,3 +97,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
 
 }
 
+// MARK: - UIWindow transition helper
+fileprivate extension UIWindow {
+    func transitionRootViewController(to toVC: UIViewController, duration: TimeInterval = 0.25) {
+        guard let fromVC = self.rootViewController else {
+            self.rootViewController = toVC
+            return
+        }
+        
+        let fadeDuration = duration / 2
+        // Fade between view controllers
+        // Need to split up the fade because we cannot use UIView.transition(from:to:...) for the root window
+        
+        fromVC.view.alpha = 1.0
+        UIView.transition(with: fromVC.view,
+                          duration: fadeDuration,
+                          options: .curveEaseOut,
+                          animations: {
+                            fromVC.view.alpha = 0.0
+        }, completion: { _ in
+            toVC.view.alpha = 0.0
+            self.rootViewController = toVC
+
+            UIView.transition(with: toVC.view,
+                              duration: fadeDuration,
+                              options: .curveEaseIn, animations: {
+                                toVC.view.alpha = 1.0
+            })
+        })
+    }
+}
