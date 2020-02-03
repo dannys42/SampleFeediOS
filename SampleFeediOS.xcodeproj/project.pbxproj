@@ -23,6 +23,7 @@
 		14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */; };
 		14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048923E7499800786A79 /* FeedWallListOp.swift */; };
 		14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */; };
+		14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049123E7F8B400786A79 /* FeedController+Posts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Errors.swift"; sourceTree = "<group>"; };
 		14DA048923E7499800786A79 /* FeedWallListOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWallListOp.swift; sourceTree = "<group>"; };
 		14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostsOp.swift; sourceTree = "<group>"; };
+		14DA049123E7F8B400786A79 /* FeedController+Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedController+Posts.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				1491820D23E68AC30037146E /* FeedController.swift */,
+				14DA049123E7F8B400786A79 /* FeedController+Posts.swift */,
 				14DA048923E7499800786A79 /* FeedWallListOp.swift */,
 				14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */,
 			);
@@ -321,6 +324,7 @@
 				149181DF23E6561F0037146E /* DetailViewController.swift in Sources */,
 				149181D923E6561F0037146E /* SampleFeediOS.xcdatamodeld in Sources */,
 				149181DB23E6561F0037146E /* SceneDelegate.swift in Sources */,
+				14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */,
 				14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

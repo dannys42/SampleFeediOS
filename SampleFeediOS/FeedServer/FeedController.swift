@@ -14,7 +14,7 @@ fileprivate let ServerUrl = URL(string: "http://localhost:8080")!
 
 public class FeedController {
     static let shared = FeedController()
-    private let opQ: OperationQueue
+    internal let opQ: OperationQueue
     
     /// store operations will occur on a child of this managed object context
     public var parentManagedObjectContext: NSManagedObjectContext? = nil
@@ -33,7 +33,7 @@ public class FeedController {
         }
     }
     
-    private let httpClient: SampleHTTPClient
+    internal let httpClient: SampleHTTPClient
     
     init() {
         self.opQ = OperationQueue()
@@ -204,44 +204,3 @@ public extension FeedController {
 
 }
 
-// MARK: Posts
-public extension FeedController {
-    struct PostResponseModel: Codable {
-        let id: Int
-        let wallId: Int
-        let userId: Int
-        let text: String
-    }
-
-    enum PostFailures: LocalizedError {
-        case unableToReadPostList(Int,Error)
-
-        public var errorDescription: String? {
-            switch self {
-            case .unableToReadPostList(let wallId, let error):
-                return "Unable to read posts for wallId=\(wallId): \(error.localizedDescription)"
-            }
-        }
-    }
-
-    func getPosts(wallId: Int, completion: @escaping (Result<[PostResponseModel],Error>)->Void) {
-        
-        httpClient.getRaw(Routes.postList(wallId).endPoint) { (response) in
-            switch response {
-            case .failure(let error):
-                completion(.failure(error))
-                print("ERROR: getting post list: \(error.localizedDescription)")
-            case .success(_, let data):
-                let s = String(data: data, encoding: .utf8)
-                print("got posts for wall \(wallId):\n\(s)")
-                do {
-                    let postList = try JSONDecoder().decode([PostResponseModel].self, from: data)
-                    completion(.success(postList))
-                } catch {
-                    completion(.failure(PostFailures.unableToReadPostList(wallId, error)))
-                }
-            }
-        }
-    }
-
-}

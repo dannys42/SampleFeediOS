@@ -11,7 +11,16 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var postButton: UIButton!
+    public var wallId: Int? {
+        didSet {
+            guard let wallId = self.wallId else {
+                return
+            }
+            FeedController.shared.updatePosts(wallId: wallId)
+        }
+    }
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -35,11 +44,25 @@ class DetailViewController: UIViewController {
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBAction func postButtonDidPress(_ sender: UIButton) {
+        guard let wallId = self.wallId else {
+            return
+        }
+        guard let text = self.textView.text,
+            text != "" else {
+            // silently ignore post if no text
+            return
+        }
         
-        FeedController.shared.updatePosts(wallId: 1)
+        let post = FeedController.PostCreateModel(text: text)
+        FeedController.shared.createPost(wallId: wallId, post: post) { result in
+            switch result {
+            case .failure(let error):
+                print("create post error: \(error.localizedDescription)")
+            case .success(let postModel):
+                print("created post: \(postModel)")
+            }
+        }
     }
-
 }
 

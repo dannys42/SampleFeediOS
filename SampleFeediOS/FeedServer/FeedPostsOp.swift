@@ -20,7 +20,6 @@ public class FeedPostsOp: Operation {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = managedObjectContext
         context.name = "\(Self.self)"
-        print("***********  my name: \(Self.self)")
         context.automaticallyMergesChangesFromParent = true
         self.context = context
         self.wallId = wallId
@@ -32,6 +31,7 @@ public class FeedPostsOp: Operation {
         
         g.enter()
         feed.getPosts(wallId: wallId) { result in
+            defer { g.leave() }
             switch result {
             case .failure(let error):
                 print("got error: \(error.localizedDescription)")

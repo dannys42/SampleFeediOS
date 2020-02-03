@@ -25,7 +25,7 @@ public class FeedWallListOp: Operation {
         // setup a private managed object context for this thread
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = managedObjectContext
-        context.name = "FeedWallListOp"
+        context.name = "\(Self.self)"
         context.automaticallyMergesChangesFromParent = true
         self.context = context
 
