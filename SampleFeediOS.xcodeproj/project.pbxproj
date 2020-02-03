@@ -22,6 +22,7 @@
 		14DA048523E6B40600786A79 /* SampleFeedUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 14DA048423E6B40600786A79 /* SampleFeedUtilities */; };
 		14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */; };
 		14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048923E7499800786A79 /* FeedWallListOp.swift */; };
+		14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		1491820D23E68AC30037146E /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		14DA048723E6B8DA00786A79 /* UIViewController+Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Errors.swift"; sourceTree = "<group>"; };
 		14DA048923E7499800786A79 /* FeedWallListOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWallListOp.swift; sourceTree = "<group>"; };
+		14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostsOp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				1491820D23E68AC30037146E /* FeedController.swift */,
 				14DA048923E7499800786A79 /* FeedWallListOp.swift */,
+				14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */,
 			);
 			path = FeedServer;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				1491820B23E659330037146E /* LoginViewController.swift in Sources */,
 				149181DD23E6561F0037146E /* MasterViewController.swift in Sources */,
 				149181D623E6561F0037146E /* AppDelegate.swift in Sources */,
+				14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */,
 				14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */,
 				149181DF23E6561F0037146E /* DetailViewController.swift in Sources */,
 				149181D923E6561F0037146E /* SampleFeediOS.xcdatamodeld in Sources */,

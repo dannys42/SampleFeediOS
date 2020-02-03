@@ -20,7 +20,7 @@ public class FeedWallListOp: Operation {
         case singleWall(Int)
     }
     
-    init(managedObjectContext: NSManagedObjectContext, mode: Mode = .all, feed: FeedController = FeedController.shared) {
+    init(managedObjectContext: NSManagedObjectContext, mode: Mode = .all, feed: FeedController = .shared) {
         
         // setup a private managed object context for this thread
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)

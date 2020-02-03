@@ -35,6 +35,11 @@ class DetailViewController: UIViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        FeedController.shared.updatePosts(wallId: 1)
+    }
 
 }
 

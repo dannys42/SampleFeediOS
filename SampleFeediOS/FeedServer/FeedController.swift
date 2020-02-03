@@ -22,11 +22,13 @@ public class FeedController {
     enum Routes {
         case wallList
         case wall(Int)
+        case postList(Int)
         
         var endPoint: String {
             switch self {
             case .wallList: return "/walls"
             case .wall(let id): return "/walls/\(id)"
+            case .postList(let wallId): return "/walls/\(wallId)/posts"
             }
         }
     }
@@ -85,10 +87,28 @@ public class FeedController {
             .compactMap { $0 as? FeedWallListOp }
             .compactMap { $0.mode == FeedWallListOp.Mode.singleWall(wallId) }
         guard wallListOps.count == 0 else {
+            // do nothing if an update op with this wallId already exists
             return
         }
 
         let op = FeedWallListOp(managedObjectContext: context, mode: .singleWall(wallId), feed: self)
+        self.opQ.addOperation(op)
+    }
+    
+    /// Synchronize posts for a given wall to the local store
+    /// This will do nothing if an identical existing request is already running
+    func updatePosts(wallId: Int) {
+        guard let context = self.parentManagedObjectContext else { return }
+
+        let wallListOps = self.opQ.operations
+            .compactMap { $0 as? FeedPostsOp }
+            .compactMap { $0.wallId == wallId }
+        guard wallListOps.count == 0 else {
+            // do nothing if an update op with this wallId already exists
+            return
+        }
+
+        let op = FeedPostsOp(wallId: wallId, managedObjectContext: context, feed: self)
         self.opQ.addOperation(op)
     }
 }
@@ -148,7 +168,7 @@ public extension FeedController {
             }
         }
     }
-    
+
     struct WallCreateModel: Codable {
         let topic: String
         let isPublic: Bool
@@ -179,6 +199,48 @@ public extension FeedController {
             }
         } catch {
             completion(.failure(WallFailures.unableToConvertWallCreateModelToJSON(error)))
+        }
+    }
+
+}
+
+// MARK: Posts
+public extension FeedController {
+    struct PostResponseModel: Codable {
+        let id: Int
+        let wallId: Int
+        let userId: Int
+        let text: String
+    }
+
+    enum PostFailures: LocalizedError {
+        case unableToReadPostList(Int,Error)
+
+        public var errorDescription: String? {
+            switch self {
+            case .unableToReadPostList(let wallId, let error):
+                return "Unable to read posts for wallId=\(wallId): \(error.localizedDescription)"
+            }
+        }
+    }
+
+    func getPosts(wallId: Int, completion: @escaping (Result<[PostResponseModel],Error>)->Void) {
+        
+        httpClient.getRaw(Routes.postList(wallId).endPoint) { (response) in
+            switch response {
+            case .failure(let error):
+                completion(.failure(error))
+                print("ERROR: getting post list: \(error.localizedDescription)")
+            case .success(_, let data):
+                let s = String(data: data, encoding: .utf8)
+                print("got posts for wall \(wallId):\n\(s)")
+                do {
+                    let postList = try JSONDecoder().decode([PostResponseModel].self, from: data)
+                    completion(.success(postList))
+                } catch {
+                    completion(.failure(PostFailures.unableToReadPostList(wallId, error)))
+                }
+            }
         }
     }
 
