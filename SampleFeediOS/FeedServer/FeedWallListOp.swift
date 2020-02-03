@@ -39,27 +39,31 @@ public class FeedWallListOp: Operation {
         switch mode {
         case .all:
             g.enter()
-            feed.getWalls(success: { (wallList) in
+            feed.getWalls() { result in
                 defer { g.leave() }
                 
-                for wallModel in wallList {
-                    self.updateWall(wall: wallModel)
+                switch result {
+                case .success(let wallList):
+                    for wallModel in wallList {
+                        self.updateWall(wall: wallModel)
+                    }
+                case .failure(let error):
+                    print("ERROR: Unable to get walls: \(error.localizedDescription)")
                 }
-            }, failure: { (error) in
-                defer { g.leave() }
-                print("ERROR: Unable to get walls: \(error.localizedDescription)")
-            })
+            }
         case .singleWall(let wallId):
             g.enter()
-            feed.getWall(id: wallId, success: { wallModel in
+            feed.getWall(id: wallId) { result in
                 defer { g.leave() }
 
-                // Queue an update when we create to ensure responsiveness
-                self.updateWall(wall: wallModel)
-            }, failure: { error in
-                defer { g.leave() }
-                print("ERROR: Unable to get wall: \(error.localizedDescription)")
-            })
+                switch result {
+                case .success(let wallModel):
+                    // Queue an update when we create to ensure responsiveness
+                    self.updateWall(wall: wallModel)
+                case .failure(let error):
+                    print("ERROR: Unable to get wall: \(error.localizedDescription)")
+                }
+            }
         }
         
         g.wait()

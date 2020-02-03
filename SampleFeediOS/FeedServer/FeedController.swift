@@ -138,32 +138,32 @@ public extension FeedController {
         let userId: Int
         let isPublic: Bool
     }
-    func getWalls(success: @escaping ([WallResponseModel])->Void, failure: @escaping (Error)->Void) {
+    func getWalls(completion: @escaping (Result<[WallResponseModel], Error>)->Void) {
         httpClient.getRaw(Routes.wallList.endPoint) { response in
             switch response {
             case .failure(let error):
-                failure(error)
+                completion(.failure(error))
             case .success(_, let data):
                 do {
                     let wallList = try JSONDecoder().decode([WallResponseModel].self, from: data)
-                    success(wallList)
+                    completion(.success(wallList))
                 } catch {
-                    failure(WallFailures.unableToReadWallList(error))
+                    completion(.failure(WallFailures.unableToReadWallList(error)))
                 }
             }
         }
     }
-    func getWall(id: Int, success: @escaping (WallResponseModel)->Void, failure: @escaping (Error)->Void) {
+    func getWall(id: Int, completion: @escaping (Result<WallResponseModel,Error>)->Void) {
         httpClient.getRaw(Routes.wall(id).endPoint) { response in
             switch response {
             case .failure(let error):
-                failure(error)
+                completion(.failure(error))
             case .success(_, let data):
                 do {
                     let wall = try JSONDecoder().decode(WallResponseModel.self, from: data)
-                    success(wall)
+                    completion(.success(wall))
                 } catch {
-                    failure(WallFailures.unableToReadWallList(error))
+                    completion(.failure(WallFailures.unableToReadWallList(error)))
                 }
             }
         }
