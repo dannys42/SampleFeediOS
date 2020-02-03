@@ -64,7 +64,13 @@ class DetailViewController: UIViewController {
         }
         
         let post = FeedController.PostCreateModel(text: text)
+        let q = DispatchQueue.main
+        
+        q.async { self.postInProgress() }
+        
         FeedController.shared.createPost(wallId: wallId, post: post) { result in
+            defer { q.async { self.postComplete() } }
+            
             switch result {
             case .failure(let error):
                 print("create post error: \(error.localizedDescription)")
@@ -72,6 +78,17 @@ class DetailViewController: UIViewController {
                 print("created post: \(postModel)")
             }
         }
+    }
+    
+    private func postInProgress() {
+        self.textView.textColor = .lightText
+        self.postButton.alpha = 0.5
+    }
+    
+    private func postComplete() {
+        self.textView.textColor = .darkText
+        self.postButton.alpha = 1.0
+        self.textView.text = ""
     }
     
     // MARK: - Fetched results controller

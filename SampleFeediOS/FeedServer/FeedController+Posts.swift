@@ -21,11 +21,14 @@ public extension FeedController {
 
     enum PostFailures: LocalizedError {
         case unableToReadPostList(Int,Error)
+        case unableToCreatePost(Int,Error)
 
         public var errorDescription: String? {
             switch self {
             case .unableToReadPostList(let wallId, let error):
                 return "Unable to read posts for wallId=\(wallId): \(error.localizedDescription)"
+            case .unableToCreatePost(let wallId, let error):
+                return "Unable to create post for wallId=\(wallId): \(error.localizedDescription)"
             }
         }
     }
@@ -35,7 +38,20 @@ public extension FeedController {
             let postData = try JSONEncoder().encode(post)
 
             httpClient.postRaw(Routes.postList(wallId).endPoint, postData) { response in
-            
+                switch response {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .success((_, let data)):
+                    do {
+                        let post = try JSONDecoder().decode(PostResponseModel.self, from: data)
+                        
+                        // TODO: this should be changed to update only this post to avoid unnecessary overhead when we have more posts or post content
+                        self.updatePosts(wallId: wallId)
+                        completion(.success(post))
+                    } catch {
+                        completion(.failure(PostFailures.unableToCreatePost(wallId, error)))
+                    }
+                }
             }
         } catch {
             completion(.failure(error))
@@ -50,8 +66,6 @@ public extension FeedController {
                 completion(.failure(error))
                 print("ERROR: getting post list: \(error.localizedDescription)")
             case .success(_, let data):
-                let s = String(data: data, encoding: .utf8)
-                print("got posts for wall \(wallId):\n\(s)")
                 do {
                     let postList = try JSONDecoder().decode([PostResponseModel].self, from: data)
                     completion(.success(postList))
