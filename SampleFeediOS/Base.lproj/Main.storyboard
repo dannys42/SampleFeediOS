@@ -37,11 +37,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mXT-1d-0jr">
-                                <rect key="frame" x="87" y="486" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mI2-yx-W9B">
                                 <rect key="frame" x="0.0" y="786" width="414" height="110"/>
                                 <subviews>
@@ -92,13 +87,85 @@
                                     <constraint firstItem="ZyV-eW-AEK" firstAttribute="leading" secondItem="mI2-yx-W9B" secondAttribute="leadingMargin" id="qGb-5w-Ixm"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mXT-1d-0jr">
+                                <rect key="frame" x="0.0" y="88" width="414" height="698"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextPostCell" id="Le9-Q0-5rh" customClass="PostCell" customModule="SampleFeed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="144"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Le9-Q0-5rh" id="HyY-Af-0az">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-O4-ICd">
+                                                    <rect key="frame" x="8" y="8" width="398" height="128"/>
+                                                    <subviews>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W6T-Q7-9s8">
+                                                            <rect key="frame" x="20" y="0.0" width="358" height="104"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
+                                                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4dT-zh-SPO">
+                                                            <rect key="frame" x="20" y="112" width="358" height="16"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbe-g9-Qyr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="28.5" height="16"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-Oh-9NM">
+                                                                    <rect key="frame" x="328" y="0.0" width="30" height="16"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="W6T-Q7-9s8" secondAttribute="trailing" constant="20" symbolic="YES" id="Nfy-55-JTb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4dT-zh-SPO" secondAttribute="trailing" constant="20" symbolic="YES" id="XUa-5n-5PW"/>
+                                                        <constraint firstItem="4dT-zh-SPO" firstAttribute="leading" secondItem="Kdx-O4-ICd" secondAttribute="leading" constant="20" symbolic="YES" id="bPx-rP-e6U"/>
+                                                        <constraint firstItem="W6T-Q7-9s8" firstAttribute="leading" secondItem="Kdx-O4-ICd" secondAttribute="leading" constant="20" symbolic="YES" id="iL6-CG-krB"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Kdx-O4-ICd" secondAttribute="trailing" constant="8" id="2Gg-Ap-1Op"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kdx-O4-ICd" secondAttribute="bottom" constant="8" id="5Ag-WL-Y1L"/>
+                                                <constraint firstItem="Kdx-O4-ICd" firstAttribute="leading" secondItem="HyY-Af-0az" secondAttribute="leading" constant="8" id="Jsy-Cm-WMo"/>
+                                                <constraint firstItem="Kdx-O4-ICd" firstAttribute="top" secondItem="HyY-Af-0az" secondAttribute="top" constant="8" id="y0Z-9B-fcz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="textView" destination="W6T-Q7-9s8" id="vYh-7J-Jpg"/>
+                                            <outlet property="timeLabel" destination="GlQ-Oh-9NM" id="BWk-Nc-bWE"/>
+                                            <outlet property="userLabel" destination="Jbe-g9-Qyr" id="zmO-LU-2fZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JEX-9P-axG" id="o52-43-dh4"/>
+                                    <outlet property="delegate" destination="JEX-9P-axG" id="grh-vF-plr"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="mI2-yx-W9B" secondAttribute="trailing" id="Fik-82-wZr"/>
+                            <constraint firstItem="mXT-1d-0jr" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" id="Ku7-CU-NPb"/>
                             <constraint firstItem="mI2-yx-W9B" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="LKK-2w-GaA"/>
                             <constraint firstAttribute="bottom" secondItem="mI2-yx-W9B" secondAttribute="bottom" id="LiB-Gg-7f0"/>
+                            <constraint firstItem="mI2-yx-W9B" firstAttribute="top" secondItem="mXT-1d-0jr" secondAttribute="bottom" id="TZT-3g-mCy"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
+                            <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="mXT-1d-0jr" secondAttribute="trailing" id="Vtp-yD-bu8"/>
+                            <constraint firstItem="mXT-1d-0jr" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="WgI-ba-OW9"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" id="tHV-ZD-HQj"/>
                         </constraints>
@@ -109,6 +176,7 @@
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
                         <outlet property="postButton" destination="hUC-yf-Lx1" id="q1s-ZC-uY7"/>
+                        <outlet property="tableView" destination="mXT-1d-0jr" id="4GZ-61-d8v"/>
                         <outlet property="textView" destination="LGj-lF-6rR" id="hsx-j6-E0G"/>
                     </connections>
                 </viewController>

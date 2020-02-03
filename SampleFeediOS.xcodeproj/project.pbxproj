@@ -24,6 +24,7 @@
 		14DA048A23E7499800786A79 /* FeedWallListOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048923E7499800786A79 /* FeedWallListOp.swift */; };
 		14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */; };
 		14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049123E7F8B400786A79 /* FeedController+Posts.swift */; };
+		14DA049423E8033500786A79 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049323E8033500786A79 /* PostCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		14DA048923E7499800786A79 /* FeedWallListOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWallListOp.swift; sourceTree = "<group>"; };
 		14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostsOp.swift; sourceTree = "<group>"; };
 		14DA049123E7F8B400786A79 /* FeedController+Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedController+Posts.swift"; sourceTree = "<group>"; };
+		14DA049323E8033500786A79 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				149181DE23E6561F0037146E /* DetailViewController.swift */,
 				1491820A23E659330037146E /* LoginViewController.swift */,
 				149181E023E6561F0037146E /* Main.storyboard */,
+				14DA049323E8033500786A79 /* PostCell.swift */,
 				149181E323E656230037146E /* Assets.xcassets */,
 				149181E523E656230037146E /* LaunchScreen.storyboard */,
 				149181E823E656230037146E /* Info.plist */,
@@ -326,6 +329,7 @@
 				149181DB23E6561F0037146E /* SceneDelegate.swift in Sources */,
 				14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */,
 				14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */,
+				14DA049423E8033500786A79 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
