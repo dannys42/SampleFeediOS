@@ -2,6 +2,8 @@
 //  FeedController.swift
 //  SampleFeediOS
 //
+//  This controller is used to trigger network operations.
+//
 //  Created by Danny Sung on 02/01/2020.
 //  Copyright © 2020 Sung Heroes. All rights reserved.
 //
@@ -61,6 +63,8 @@ public class FeedController {
     func logout() {
         try? httpClient.logout()
     }
+    
+    // MARK: - Data Synchronization methods
     
     /// Synchronize walls from the server to the local store.
     /// This will do nothing if an identical existing request is already running

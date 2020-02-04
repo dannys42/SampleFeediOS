@@ -1,7 +1,7 @@
 //
 //  FeedController+Walls.swift
 //  SampleFeediOS
-//  Wall helper functions
+//  Wall network operations
 //
 //  Created by Danny Sung on 02/03/2020.
 //  Copyright © 2020 Sung Heroes. All rights reserved.

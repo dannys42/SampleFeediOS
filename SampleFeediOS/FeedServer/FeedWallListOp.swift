@@ -1,7 +1,7 @@
 //
 //  FeedWallListOp.swift
 //  SampleFeediOS
-//  Sync list of wall visible to a user with the local CoreData cache
+//  Sync list of walls visible to a user with the local CoreData cache
 //
 //  Created by Danny Sung on 02/02/2020.
 //  Copyright © 2020 Sung Heroes. All rights reserved.
