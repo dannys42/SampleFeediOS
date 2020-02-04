@@ -18,7 +18,9 @@ public extension FeedController {
         let userId: Int
         let text: String
     }
-
+    typealias PostResponse = Result<PostResponseModel, Error>
+    typealias PostListResponse = Result<[PostResponseModel],Error>
+    
     enum PostFailures: LocalizedError {
         case unableToReadPostList(Int,Error)
         case unableToCreatePost(Int,Error)
@@ -33,7 +35,7 @@ public extension FeedController {
         }
     }
     
-    func createPost(wallId: Int, post: PostCreateModel, completion: @escaping (Result<PostResponseModel,Error>)->Void) {
+    func createPost(wallId: Int, post: PostCreateModel, completion: @escaping (PostResponse)->Void) {
         do {
             let postData = try JSONEncoder().encode(post)
 
@@ -58,8 +60,7 @@ public extension FeedController {
         }
     }
 
-    func getPosts(wallId: Int, completion: @escaping (Result<[PostResponseModel],Error>)->Void) {
-        
+    func getPosts(wallId: Int, completion: @escaping (PostListResponse)->Void) {
         httpClient.getRaw(Routes.postList(wallId).endPoint) { (response) in
             switch response {
             case .failure(let error):

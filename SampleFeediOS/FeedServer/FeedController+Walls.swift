@@ -34,7 +34,11 @@ public extension FeedController {
         let userId: Int
         let isPublic: Bool
     }
-    func getWalls(completion: @escaping (Result<[WallResponseModel], Error>)->Void) {
+    
+    typealias WallListResponse = Result<[WallResponseModel], Error>
+    typealias WallResponse = Result<WallResponseModel, Error>
+
+    func getWalls(completion: @escaping (WallListResponse)->Void) {
         httpClient.getRaw(Routes.wallList.endPoint) { response in
             switch response {
             case .failure(let error):
@@ -49,7 +53,7 @@ public extension FeedController {
             }
         }
     }
-    func getWall(id: Int, completion: @escaping (Result<WallResponseModel,Error>)->Void) {
+    func getWall(id: Int, completion: @escaping (WallResponse)->Void) {
         httpClient.getRaw(Routes.wall(id).endPoint) { response in
             switch response {
             case .failure(let error):
@@ -72,11 +76,8 @@ public extension FeedController {
         let topic: String
         let isPublic: Bool
     }
-    enum CreateWallResponse {
-        case success(WallResponseModel)
-        case failure(Error)
-    }
-    func createWall(topic: String, isPublic: Bool, completion: @escaping (CreateWallResponse)->Void = { _ in }) {
+    
+    func createWall(topic: String, isPublic: Bool, completion: @escaping (WallResponse)->Void = { _ in }) {
         let wall = WallCreateModel(topic: topic, isPublic: isPublic)
         
         do {
