@@ -39,6 +39,11 @@ class DetailViewController: UIViewController {
         }
     }
     
+    public var topic: String? {
+        didSet {
+            self.navigationController?.title = topic
+        }
+    }
     public var wallId: Int? {
         willSet {
             if wallId != newValue {
@@ -55,16 +60,17 @@ class DetailViewController: UIViewController {
     }
     var managedObjectContext: NSManagedObjectContext? = nil
     
-    var detailItem: Wall? {
+    var wallEntry: Wall? {
         didSet {
             // Update the view.
             configureView()
+            self.title = self.wallEntry?.topic
         }
     }
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
+        if let detail = wallEntry {
             if let label = detailDescriptionLabel {
                 label.text = detail.topic ?? "(no topic)"
             }

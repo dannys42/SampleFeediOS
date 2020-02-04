@@ -91,7 +91,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let object = fetchedResultsController.object(at: indexPath)
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.managedObjectContext = self.managedObjectContext
-                controller.detailItem = object
+                controller.wallEntry = object
                 
                 controller.wallId = Int(object.id)
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
