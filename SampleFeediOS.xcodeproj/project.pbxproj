@@ -68,6 +68,8 @@
 		14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostsOp.swift; sourceTree = "<group>"; };
 		14DA049123E7F8B400786A79 /* FeedController+Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedController+Posts.swift"; sourceTree = "<group>"; };
 		14DA049323E8033500786A79 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		14DA049523E947BA00786A79 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		14DA049623E947BA00786A79 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,8 @@
 		149181C923E6561F0037146E = {
 			isa = PBXGroup;
 			children = (
+				14DA049523E947BA00786A79 /* LICENSE */,
+				14DA049623E947BA00786A79 /* README.md */,
 				149181D423E6561F0037146E /* SampleFeediOS */,
 				149181F023E656230037146E /* SampleFeediOSTests */,
 				149181FB23E656230037146E /* SampleFeediOSUITests */,
