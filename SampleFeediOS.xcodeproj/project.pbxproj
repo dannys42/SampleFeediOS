@@ -25,6 +25,7 @@
 		14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */; };
 		14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049123E7F8B400786A79 /* FeedController+Posts.swift */; };
 		14DA049423E8033500786A79 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049323E8033500786A79 /* PostCell.swift */; };
+		14E3452623E95050002DE96E /* FeedController+Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3452523E95050002DE96E /* FeedController+Walls.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		14DA049323E8033500786A79 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		14DA049523E947BA00786A79 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		14DA049623E947BA00786A79 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14E3452523E95050002DE96E /* FeedController+Walls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedController+Walls.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1491820D23E68AC30037146E /* FeedController.swift */,
+				14E3452523E95050002DE96E /* FeedController+Walls.swift */,
 				14DA049123E7F8B400786A79 /* FeedController+Posts.swift */,
 				14DA048923E7499800786A79 /* FeedWallListOp.swift */,
 				14DA048F23E7E9BC00786A79 /* FeedPostsOp.swift */,
@@ -324,6 +327,7 @@
 			files = (
 				1491820E23E68AC30037146E /* FeedController.swift in Sources */,
 				1491820B23E659330037146E /* LoginViewController.swift in Sources */,
+				14E3452623E95050002DE96E /* FeedController+Walls.swift in Sources */,
 				149181DD23E6561F0037146E /* MasterViewController.swift in Sources */,
 				149181D623E6561F0037146E /* AppDelegate.swift in Sources */,
 				14DA049023E7E9BC00786A79 /* FeedPostsOp.swift in Sources */,
