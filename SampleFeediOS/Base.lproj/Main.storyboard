@@ -37,58 +37,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mI2-yx-W9B">
-                                <rect key="frame" x="0.0" y="786" width="414" height="110"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZyV-eW-AEK">
-                                        <rect key="frame" x="8" y="8" width="398" height="60"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-lF-6rR">
-                                                <rect key="frame" x="0.0" y="11" width="335" height="38"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUC-yf-Lx1">
-                                                <rect key="frame" x="351" y="19" width="47" height="22"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <inset key="contentEdgeInsets" minX="8" minY="2" maxX="8" maxY="2"/>
-                                                <state key="normal" title="Post">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="postButtonDidPress:" destination="JEX-9P-axG" eventType="touchUpInside" id="SUb-eX-pm2"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="BGU-sG-F5T"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="LGj-lF-6rR" firstAttribute="width" secondItem="mI2-yx-W9B" secondAttribute="width" priority="750" id="B9h-4t-a1e"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="KKc-Zw-ZY6"/>
-                                    <constraint firstItem="ZyV-eW-AEK" firstAttribute="top" secondItem="mI2-yx-W9B" secondAttribute="topMargin" id="ODW-Q6-0st"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="ZyV-eW-AEK" secondAttribute="trailing" id="WYc-jA-D77"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="ZyV-eW-AEK" secondAttribute="bottom" id="YR4-nA-l51"/>
-                                    <constraint firstItem="ZyV-eW-AEK" firstAttribute="leading" secondItem="mI2-yx-W9B" secondAttribute="leadingMargin" id="qGb-5w-Ixm"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mXT-1d-0jr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="716"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextPostCell" id="Le9-Q0-5rh" customClass="PostCell" customModule="SampleFeed" customModuleProvider="target">
@@ -155,6 +105,71 @@
                                     <outlet property="delegate" destination="JEX-9P-axG" id="grh-vF-plr"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mI2-yx-W9B">
+                                <rect key="frame" x="0.0" y="804" width="414" height="92"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AVT-Qt-VMl">
+                                        <rect key="frame" x="20" y="20" width="374" height="38"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZyV-eW-AEK">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
+                                                <subviews>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-lF-6rR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="311" height="38"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    </textView>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUC-yf-Lx1">
+                                                        <rect key="frame" x="327" y="8" width="47" height="22"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="2" maxX="8" maxY="2"/>
+                                                        <state key="normal" title="Post">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="postButtonDidPress:" destination="JEX-9P-axG" eventType="touchUpInside" id="SUb-eX-pm2"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="BGU-sG-F5T"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQB-G6-Ez2" userLabel="Keyboard Spacer View">
+                                                <rect key="frame" x="132" y="38" width="110" height="0.0"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="999" id="ait-gG-oXW"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ZyV-eW-AEK" secondAttribute="trailing" id="YNg-Tg-Ew6"/>
+                                            <constraint firstItem="ZyV-eW-AEK" firstAttribute="leading" secondItem="AVT-Qt-VMl" secondAttribute="leading" id="vT0-rD-9eJ"/>
+                                            <constraint firstItem="ZyV-eW-AEK" firstAttribute="top" secondItem="AVT-Qt-VMl" secondAttribute="top" id="xuC-K8-kcl"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="AVT-Qt-VMl" firstAttribute="top" secondItem="mI2-yx-W9B" secondAttribute="top" constant="20" symbolic="YES" id="EFP-5r-lBv"/>
+                                    <constraint firstItem="AVT-Qt-VMl" firstAttribute="leading" secondItem="mI2-yx-W9B" secondAttribute="leading" constant="20" symbolic="YES" id="GUb-1j-OQy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="KKc-Zw-ZY6"/>
+                                    <constraint firstAttribute="trailing" secondItem="AVT-Qt-VMl" secondAttribute="trailing" constant="20" symbolic="YES" id="uiO-22-7fu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -168,6 +183,7 @@
                             <constraint firstItem="mXT-1d-0jr" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" id="WgI-ba-OW9"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="AVT-Qt-VMl" firstAttribute="bottom" secondItem="VUw-jc-0yf" secondAttribute="bottom" id="wgv-9j-prv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VUw-jc-0yf"/>
                     </view>
@@ -175,6 +191,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="keyboardSpacerView" destination="CQB-G6-Ez2" id="zYm-i1-CRm"/>
                         <outlet property="postButton" destination="hUC-yf-Lx1" id="q1s-ZC-uY7"/>
                         <outlet property="tableView" destination="mXT-1d-0jr" id="4GZ-61-d8v"/>
                         <outlet property="textView" destination="LGj-lF-6rR" id="hsx-j6-E0G"/>
@@ -415,6 +432,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
+        <segue reference="Tll-UG-LXB"/>
     </inferredMetricsTieBreakers>
 </document>

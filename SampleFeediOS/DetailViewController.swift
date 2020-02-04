@@ -11,10 +11,27 @@ import CoreData
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var keyboardSpacerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var postButton: UIButton!
+    
+    private var keyboardSpacerConstraint: NSLayoutConstraint? {
+        willSet {
+            // remove old constraint
+            if let constraint = self.keyboardSpacerConstraint {
+                keyboardSpacerView.removeConstraint(constraint)
+            }
+        }
+        didSet {
+            // add new constraint
+            if let constraint = self.keyboardSpacerConstraint {
+                keyboardSpacerView.addConstraint(constraint)
+            }
+        }
+    }
+    
     public var wallId: Int? {
         willSet {
             if wallId != newValue {
@@ -30,6 +47,13 @@ class DetailViewController: UIViewController {
         }
     }
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    var detailItem: Wall? {
+        didSet {
+            // Update the view.
+            configureView()
+        }
+    }
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -46,13 +70,17 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: Wall? {
-        didSet {
-            // Update the view.
-            configureView()
-        }
-    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let noteCenter = NotificationCenter.default
+    
+        noteCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        noteCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        self.keyboardSpacerConstraint = nil
+    }
+    
     @IBAction func postButtonDidPress(_ sender: UIButton) {
         guard let wallId = self.wallId else {
             return
@@ -132,6 +160,28 @@ class DetailViewController: UIViewController {
     }
     var _fetchedResultsController: NSFetchedResultsController<Post>? = nil
 
+    
+    // MARK: keyboard handler
+    
+    @objc
+    func keyboardWillShow(_ note: Notification) {
+        guard keyboardSpacerConstraint == nil else { return }
+        
+        if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.keyboardSpacerConstraint = NSLayoutConstraint(item: self.keyboardSpacerView as Any,
+                                                               attribute: .height,
+                                                               relatedBy: .equal,
+                                                               toItem: nil,
+                                                               attribute: .notAnAttribute,
+                                                               multiplier: 1.0,
+                                                               constant: keyboardSize.height)
+        }
+    }
+    
+    @objc
+    func keyboardWillHide(_ note: Notification) {
+        self.keyboardSpacerConstraint = nil
+    }
 }
 
 // MARK: - UITableViewDataSource
