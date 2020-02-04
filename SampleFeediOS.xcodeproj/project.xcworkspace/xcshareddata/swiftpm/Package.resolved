@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SampleFeedUtilities",
+        "repositoryURL": "https://github.com/dannys42/SampleFeedUtilities",
+        "state": {
+          "branch": "master",
+          "revision": "42761e391a536d74a0846f7e4b3061b0fb179f20",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
