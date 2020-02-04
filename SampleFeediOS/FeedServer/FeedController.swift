@@ -13,7 +13,7 @@ import CoreData
 import SampleFeedUtilities
 
 public class FeedController {
-    static let productionUrl = URL(string: "http://localhost:8080")!
+    static let productionUrl = URL(string: Constants.productionUrl)!
     static let shared = FeedController()
 
     public var serverUrl = FeedController.productionUrl

@@ -26,6 +26,7 @@
 		14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049123E7F8B400786A79 /* FeedController+Posts.swift */; };
 		14DA049423E8033500786A79 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049323E8033500786A79 /* PostCell.swift */; };
 		14E3452623E95050002DE96E /* FeedController+Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3452523E95050002DE96E /* FeedController+Walls.swift */; };
+		14E3452823E96858002DE96E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3452723E96858002DE96E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		14DA049523E947BA00786A79 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		14DA049623E947BA00786A79 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14E3452523E95050002DE96E /* FeedController+Walls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedController+Walls.swift"; sourceTree = "<group>"; };
+		14E3452723E96858002DE96E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		149181D423E6561F0037146E /* SampleFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				14E3452723E96858002DE96E /* Constants.swift */,
 				149181D523E6561F0037146E /* AppDelegate.swift */,
 				149181DA23E6561F0037146E /* SceneDelegate.swift */,
 				149181DC23E6561F0037146E /* MasterViewController.swift */,
@@ -336,6 +339,7 @@
 				149181D923E6561F0037146E /* SampleFeediOS.xcdatamodeld in Sources */,
 				149181DB23E6561F0037146E /* SceneDelegate.swift in Sources */,
 				14DA049223E7F8B400786A79 /* FeedController+Posts.swift in Sources */,
+				14E3452823E96858002DE96E /* Constants.swift in Sources */,
 				14DA048823E6B8DA00786A79 /* UIViewController+Errors.swift in Sources */,
 				14DA049423E8033500786A79 /* PostCell.swift in Sources */,
 			);

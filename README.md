@@ -21,6 +21,11 @@ Wall syncing is currently triggered whenever the user is logged in.  And posts a
 In addition, when a wall or post is added, those trigger an additional sync event.
 
 
+## Getting Started
+
+Before building, edit Constants.swift and set the URL of your production server.
+
+
 ## TODO
 
 - Delete walls/posts
