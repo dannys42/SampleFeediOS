@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MBProgressHUD
 
 class DetailViewController: UIViewController {
 
@@ -96,8 +97,15 @@ class DetailViewController: UIViewController {
         
         q.async { self.postInProgress() }
         
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .indeterminate
+        hud.label.text = "Sending post..."
+        
         FeedController.shared.createPost(wallId: wallId, post: post) { result in
-            defer { q.async { self.postComplete() } }
+            defer { q.async {
+                self.postComplete()
+                hud.hide(animated: true)
+            }}
             
             switch result {
             case .failure(let error):
@@ -108,15 +116,26 @@ class DetailViewController: UIViewController {
         }
     }
     
+    private func sendPost(_ text: String) {
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .indeterminate
+        hud.label.text = "Attempting to log in"
+
+    }
+    
     private func postInProgress() {
         self.textView.textColor = .lightText
         self.postButton.alpha = 0.5
+        self.textView.resignFirstResponder()
+        self.postButton.isEnabled = false
     }
     
     private func postComplete() {
         self.textView.textColor = .darkText
         self.postButton.alpha = 1.0
         self.textView.text = ""
+        self.textView.resignFirstResponder()
+        self.postButton.isEnabled = true
     }
     
     // MARK: - Fetched results controller
@@ -263,3 +282,4 @@ extension DetailViewController: NSFetchedResultsControllerDelegate {
         tableView.endUpdates()
     }
 }
+
