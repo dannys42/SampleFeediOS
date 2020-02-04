@@ -27,6 +27,7 @@
 		14DA049423E8033500786A79 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA049323E8033500786A79 /* PostCell.swift */; };
 		14E3452623E95050002DE96E /* FeedController+Walls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3452523E95050002DE96E /* FeedController+Walls.swift */; };
 		14E3452823E96858002DE96E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3452723E96858002DE96E /* Constants.swift */; };
+		14E3452B23E9D2EB002DE96E /* MBProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 14E3452A23E9D2EB002DE96E /* MBProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E3452B23E9D2EB002DE96E /* MBProgressHUD in Frameworks */,
 				14DA048523E6B40600786A79 /* SampleFeedUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +211,7 @@
 			name = SampleFeediOS;
 			packageProductDependencies = (
 				14DA048423E6B40600786A79 /* SampleFeedUtilities */,
+				14E3452A23E9D2EB002DE96E /* MBProgressHUD */,
 			);
 			productName = SampleFeediOS;
 			productReference = 149181D223E6561F0037146E /* SampleFeed.app */;
@@ -284,6 +287,7 @@
 			mainGroup = 149181C923E6561F0037146E;
 			packageReferences = (
 				14DA048323E6B40600786A79 /* XCRemoteSwiftPackageReference "SampleFeedUtilities" */,
+				14E3452923E9D2EB002DE96E /* XCRemoteSwiftPackageReference "MBProgressHUD" */,
 			);
 			productRefGroup = 149181D323E6561F0037146E /* Products */;
 			projectDirPath = "";
@@ -680,6 +684,14 @@
 				kind = branch;
 			};
 		};
+		14E3452923E9D2EB002DE96E /* XCRemoteSwiftPackageReference "MBProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jdg/MBProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -687,6 +699,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 14DA048323E6B40600786A79 /* XCRemoteSwiftPackageReference "SampleFeedUtilities" */;
 			productName = SampleFeedUtilities;
+		};
+		14E3452A23E9D2EB002DE96E /* MBProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14E3452923E9D2EB002DE96E /* XCRemoteSwiftPackageReference "MBProgressHUD" */;
+			productName = MBProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 

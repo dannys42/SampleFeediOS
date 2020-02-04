@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -98,7 +99,16 @@ class LoginViewController: UIViewController {
                 // Do nothing if attmept to login with no username/password
                 return
         }
+        
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud.mode = .indeterminate
+        hud.label.text = "Attempting to log in"
         FeedController.shared.login(username: username, password: password) { error in
+            defer {
+                DispatchQueue.main.async {
+                    hud.hide(animated: true)
+                }
+            }
             
             DispatchQueue.main.async {
                 self.saveDefaults()
