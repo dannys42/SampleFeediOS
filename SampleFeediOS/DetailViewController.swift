@@ -19,17 +19,22 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var postButton: UIButton!
     
+    /// Constraint used to keep textview visible when keyboard is displayed
     private var keyboardSpacerConstraint: NSLayoutConstraint? {
         willSet {
             // remove old constraint
             if let constraint = self.keyboardSpacerConstraint {
-                keyboardSpacerView.removeConstraint(constraint)
+                DispatchQueue.main.async { [weak self] in
+                    self?.keyboardSpacerView.removeConstraint(constraint)
+                }
             }
         }
         didSet {
             // add new constraint
             if let constraint = self.keyboardSpacerConstraint {
-                keyboardSpacerView.addConstraint(constraint)
+                DispatchQueue.main.async { [weak self] in
+                    self?.keyboardSpacerView.addConstraint(constraint)
+                }
             }
         }
     }
@@ -88,7 +93,14 @@ class DetailViewController: UIViewController {
     @IBAction func keyboardDismissButtonPressed(_ sender: UIBarButtonItem) {
         self.textView.resignFirstResponder()
     }
+    
+    
+    /// Send a post through the network.
+    /// The post is not visible immediately, but instead triggers a sync action.
+    /// - Parameter sender: the button that triggered the press event
     @IBAction func postButtonDidPress(_ sender: UIButton) {
+        self.textView.resignFirstResponder()
+        
         guard let wallId = self.wallId else {
             return
         }
@@ -122,13 +134,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    private func sendPost(_ text: String) {
-        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hud.mode = .indeterminate
-        hud.label.text = "Attempting to log in"
-
-    }
-    
+    /// Convenience method to handle setup when a post operation is starting
     private func postInProgress() {
         self.textView.textColor = .lightText
         self.postButton.alpha = 0.5
@@ -136,6 +142,7 @@ class DetailViewController: UIViewController {
         self.postButton.isEnabled = false
     }
     
+    /// Convenience method to handle setup when a post operation has ended
     private func postComplete() {
         self.textView.textColor = .darkText
         self.postButton.alpha = 1.0
@@ -146,6 +153,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Fetched results controller
 
+    // Setup fetched results controller to show all posts in a wall.
     var fetchedResultsController: NSFetchedResultsController<Post> {
         if _fetchedResultsController != nil {
             return _fetchedResultsController!
@@ -188,10 +196,11 @@ class DetailViewController: UIViewController {
     
     // MARK: keyboard handler
     
+    /// Add vertical spacing when keyboard appears.
     @objc
     func keyboardWillShow(_ note: Notification) {
         guard keyboardSpacerConstraint == nil else { return }
-        
+
         if let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.keyboardSpacerConstraint = NSLayoutConstraint(item: self.keyboardSpacerView as Any,
                                                                attribute: .height,
@@ -203,6 +212,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    /// Remove veritcal spacing for keyboard
     @objc
     func keyboardWillHide(_ note: Notification) {
         self.keyboardSpacerConstraint = nil
