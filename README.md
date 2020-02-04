@@ -2,7 +2,7 @@
 
 SampleFeed is a sample app that allows you to create "walls" and read and write to "posts" on those walls.  
 
-It relies on the [https://github.com/dannys42/SampleFeedServer](SampleFeedServer).
+It relies on the [SampleFeedServer](https://github.com/dannys42/SampleFeedServer).
 
 ## Features
 
