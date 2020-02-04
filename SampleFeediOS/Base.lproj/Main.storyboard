@@ -114,7 +114,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZyV-eW-AEK">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-lF-6rR">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGj-lF-6rR" userLabel="Post Text View">
                                                         <rect key="frame" x="0.0" y="0.0" width="311" height="38"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -192,12 +192,25 @@
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
                         <outlet property="keyboardSpacerView" destination="CQB-G6-Ez2" id="zYm-i1-CRm"/>
+                        <outlet property="keyboardToolbar" destination="hed-IG-ebY" id="yfw-OH-cHy"/>
                         <outlet property="postButton" destination="hUC-yf-Lx1" id="q1s-ZC-uY7"/>
                         <outlet property="tableView" destination="mXT-1d-0jr" id="4GZ-61-d8v"/>
                         <outlet property="textView" destination="LGj-lF-6rR" id="hsx-j6-E0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="hed-IG-ebY" userLabel="Keyboard Toolbar">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="LR8-Nb-Oa3"/>
+                        <barButtonItem title="Dismiss" id="mKe-ps-6Hy">
+                            <connections>
+                                <action selector="keyboardDismissButtonPressed:" destination="JEX-9P-axG" id="KHy-lS-Wmu"/>
+                            </connections>
+                        </barButtonItem>
+                    </items>
+                </toolbar>
             </objects>
             <point key="canvasLocation" x="708.69565217391312" y="128.57142857142856"/>
         </scene>

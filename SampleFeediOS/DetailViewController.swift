@@ -12,6 +12,7 @@ import MBProgressHUD
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet var keyboardToolbar: UIToolbar!
     @IBOutlet weak var keyboardSpacerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
@@ -63,6 +64,7 @@ class DetailViewController: UIViewController {
                 label.text = detail.topic ?? "(no topic)"
             }
         }
+        
     }
 
     override func viewDidLoad() {
@@ -80,8 +82,12 @@ class DetailViewController: UIViewController {
         noteCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         self.keyboardSpacerConstraint = nil
+        self.textView.inputAccessoryView = self.keyboardToolbar
     }
     
+    @IBAction func keyboardDismissButtonPressed(_ sender: UIBarButtonItem) {
+        self.textView.resignFirstResponder()
+    }
     @IBAction func postButtonDidPress(_ sender: UIButton) {
         guard let wallId = self.wallId else {
             return
@@ -228,7 +234,13 @@ extension DetailViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension DetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        // if the user taps a cell, dismiss the textView
+        self.textView.resignFirstResponder()
+        
+        // no cell selections
+        return false
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
