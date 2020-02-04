@@ -1,5 +1,7 @@
 # SampleFeediOS
 
+[![Swift][swift-badge]][swift-url]
+
 SampleFeed is a sample app that allows you to create "walls" and read and write to "posts" on those walls.  
 
 It relies on the [SampleFeedServer](https://github.com/dannys42/SampleFeedServer) and shares code in [SampleFeedUtilities](https://github.com/dannys42/SampleFeedUtilities).
@@ -24,3 +26,11 @@ In addition, when a wall or post is added, those trigger an additional sync even
 - Delete walls/posts
 - Images/Videos
 - Push notification
+
+
+## License
+
+This project is released under the MIT license. See [LICENSE](LICENSE) for details.
+
+[swift-badge]: https://img.shields.io/badge/Swift-5.1-orange.svg?style=flat
+[swift-url]: https://swift.org
