@@ -10,10 +10,11 @@ import Foundation
 import CoreData
 import SampleFeedUtilities
 
-fileprivate let ServerUrl = URL(string: "http://localhost:8080")!
-
 public class FeedController {
+    static let productionUrl = URL(string: "http://localhost:8080")!
     static let shared = FeedController()
+
+    public var serverUrl = FeedController.productionUrl
     internal let opQ: OperationQueue
     
     /// store operations will occur on a child of this managed object context
@@ -40,7 +41,7 @@ public class FeedController {
         
         self.opQ.maxConcurrentOperationCount = 3
         
-        self.httpClient = SampleHTTPClient(baseUrl: ServerUrl)
+        self.httpClient = SampleHTTPClient(baseUrl: serverUrl)
         self.httpClient.defaultHeaders = [
             "Content-Type" : "application/json"
         ]

@@ -13,8 +13,30 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var keyboardToolbar: UIToolbar!
-
-    public var didLogin: ()->Void = { }
+    @IBOutlet weak var serverButton: UIButton!
+    
+    public var customServerEnabled: Bool = false {
+        didSet {
+            if customServerEnabled != oldValue {
+                DispatchQueue.main.async {
+                    self.updateServerButton()
+                }
+            }
+        }
+    }
+    public var customServer: String?
+    
+    public var didLogin: ()->Void = {  }
+    
+    private var serverUrl: URL {
+        let productionUrl = FeedController.productionUrl
+        guard !customServerEnabled,
+            let customServer = self.customServer,
+            let customServerUrl = URL(string: customServer) else {
+                return productionUrl
+        }
+        return customServerUrl
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +48,11 @@ class LoginViewController: UIViewController {
         self.loadDefaults()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateServerButton()
+    }
+    
     @IBAction func loginDidPress(_ sender: UIButton) {
         self.login()
     }
@@ -33,6 +60,35 @@ class LoginViewController: UIViewController {
     @IBAction func textDoneDidPress(_ sender: UIBarButtonItem) {
         self.usernameTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
+    }
+    
+    @IBAction func serverButtonDidPress(_ sender: UIButton) {
+        let inputVC = UIAlertController(title: "Choose Server", message: "Specify Custom URL", preferredStyle: .alert)
+        inputVC.addTextField { (textField) in
+            textField.placeholder = "https://www.example.com"
+            textField.text = self.customServer
+        }
+        let disableAction = UIAlertAction(title: "Use Production Server", style: .default) { (alert) in
+            self.customServerEnabled = false
+        }
+        let enableAction = UIAlertAction(title: "Set Custom Server", style: .cancel) { (alert) in
+            let textField = inputVC.textFields![0] as UITextField
+            
+            // Only allow server names that at least specify http/https correctly
+            guard let scheme = URL(string: textField.text ?? "")?.scheme,
+                scheme == "http" || scheme == "https" else {
+                    self.customServerEnabled = false
+                    return
+                }
+            
+            self.customServer = textField.text
+            self.customServerEnabled = true
+        }
+        
+        inputVC.addAction(disableAction)
+        inputVC.addAction(enableAction)
+        
+        self.present(inputVC, animated: true)
     }
     
     // MARK: - Convenience Functions
@@ -54,13 +110,30 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            FeedController.shared.serverUrl = self.serverUrl
             self.didLogin()
         }
     }
     
-    // FIXME: Convenience during development.  Remove these in production.
+    fileprivate func updateServerButton() {
+        let newTitle: String
+        if self.customServerEnabled {
+            newTitle = self.customServer ?? "(no server)"
+            self.serverButton.alpha = 1.0
+        } else {
+            newTitle = "Production"
+            self.serverButton.alpha = 0.25
+        }
+        self.serverButton.setTitle(newTitle, for: .normal)
+    }
+    
+    // MARK: Persist user entry
     enum DefaultsKey: String {
+        case customServerEnabled
+        case customServer
+        
         case username
+        // FIXME: Convenience during development.  Password should use keychain in production.
         case password
     }
     fileprivate func loadDefaults() {
@@ -68,6 +141,8 @@ class LoginViewController: UIViewController {
         
         self.usernameTextField.text = store.string(forKey: DefaultsKey.username.rawValue)
         self.passwordTextField.text = store.string(forKey: DefaultsKey.password.rawValue)
+        self.customServer = store.string(forKey: DefaultsKey.customServer.rawValue)
+        self.customServerEnabled = store.bool(forKey: DefaultsKey.customServerEnabled.rawValue)
     }
     fileprivate func saveDefaults() {
         let store = UserDefaults.standard
@@ -82,6 +157,14 @@ class LoginViewController: UIViewController {
         } else {
             store.removeObject(forKey: DefaultsKey.password.rawValue)
         }
+        
+        if let text = self.customServer {
+            store.set(text, forKey: DefaultsKey.customServer.rawValue)
+        } else {
+            store.removeObject(forKey: DefaultsKey.customServer.rawValue)
+        }
+
+        store.set(self.customServerEnabled, forKey: DefaultsKey.customServerEnabled.rawValue)
     }
 }
 

@@ -269,7 +269,17 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkH-Rw-5jh">
-                                        <rect key="frame" x="87" y="0.0" width="240" height="246"/>
+                                        <rect key="frame" x="87" y="0.0" width="240" height="94.5"/>
+                                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Feeds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kta-v4-u5T">
+                                        <rect key="frame" x="128" y="102.5" width="158" height="41"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNC-Bc-w9F">
+                                        <rect key="frame" x="87" y="151.5" width="240" height="94.5"/>
                                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eSH-ap-Inz" userLabel="Credentials Stack View">
@@ -351,16 +361,30 @@
                                     <constraint firstItem="rkH-Rw-5jh" firstAttribute="height" secondItem="OIR-vH-XTu" secondAttribute="height" multiplier="0.5" priority="250" id="VJa-2x-Ft2"/>
                                     <constraint firstItem="hcu-7p-5bR" firstAttribute="leading" secondItem="eRt-fd-zQa" secondAttribute="leadingMargin" constant="32" id="ZVP-I5-t7J"/>
                                     <constraint firstItem="rkH-Rw-5jh" firstAttribute="height" secondItem="lWF-d4-Aee" secondAttribute="height" priority="250" id="guv-QI-HjB"/>
+                                    <constraint firstItem="zNC-Bc-w9F" firstAttribute="height" secondItem="rkH-Rw-5jh" secondAttribute="height" id="zKF-MU-PHU"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqQ-Dy-RIQ">
+                                <rect key="frame" x="273" y="44" width="125" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Devel Server Disabled">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="serverButtonDidPress:" destination="EPH-Tf-8bT" eventType="touchUpInside" id="NeS-ug-mTS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cyG-Lr-ede" firstAttribute="trailing" secondItem="oqQ-Dy-RIQ" secondAttribute="trailing" constant="16" id="371-J1-9l2"/>
                             <constraint firstItem="cyG-Lr-ede" firstAttribute="trailing" secondItem="eRt-fd-zQa" secondAttribute="trailing" id="FLZ-dQ-ogq"/>
                             <constraint firstItem="eRt-fd-zQa" firstAttribute="top" secondItem="cyG-Lr-ede" secondAttribute="top" id="IfM-AI-eHv"/>
                             <constraint firstItem="eRt-fd-zQa" firstAttribute="leading" secondItem="cyG-Lr-ede" secondAttribute="leading" id="IgF-zW-xBx"/>
                             <constraint firstItem="cyG-Lr-ede" firstAttribute="bottom" secondItem="eRt-fd-zQa" secondAttribute="bottom" id="M4X-jn-Zkx"/>
                             <constraint firstItem="eSH-ap-Inz" firstAttribute="centerY" secondItem="cyG-Lr-ede" secondAttribute="centerY" multiplier="0.75" priority="750" id="Z7p-4S-fIr"/>
+                            <constraint firstItem="oqQ-Dy-RIQ" firstAttribute="top" secondItem="cyG-Lr-ede" secondAttribute="top" id="rzy-vj-AVa"/>
+                            <constraint firstItem="oqQ-Dy-RIQ" firstAttribute="leading" secondItem="cyG-Lr-ede" secondAttribute="leading" priority="250" constant="16" id="wyK-D8-jIe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cyG-Lr-ede"/>
                     </view>
@@ -369,6 +393,7 @@
                         <outlet property="keyboardToolbar" destination="JuQ-7F-BOz" id="PYp-du-PgC"/>
                         <outlet property="loginButton" destination="hcu-7p-5bR" id="MkF-d2-gXg"/>
                         <outlet property="passwordTextField" destination="wY3-zM-cLT" id="Uk7-k4-stj"/>
+                        <outlet property="serverButton" destination="oqQ-Dy-RIQ" id="bEf-31-SIU"/>
                         <outlet property="usernameTextField" destination="HJI-W8-xBX" id="dEg-ab-2Wq"/>
                     </connections>
                 </viewController>
